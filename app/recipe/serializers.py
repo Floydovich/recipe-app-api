@@ -13,3 +13,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             'link'
         ]
         read_only_fields = ['id']
+
+
+class RecipeDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recipe
