@@ -1,4 +1,8 @@
+from django.urls import reverse
+from django.test import TestCase
+from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
+from rest_framework import status
 
 from core.models import Tag
 from recipe.serializers import TagSerializer
@@ -29,8 +33,8 @@ class PrivateTagsAPITest(TestCase):
         self.client.force_authenticate(self.user)
 
     def test_retrieve_tags(self):
-        Tags.objects.create(user=self.user, name='Vegan')
-        Tags.objects.create(user=self.user, name='Dessert')
+        Tag.objects.create(user=self.user, name='Vegan')
+        Tag.objects.create(user=self.user, name='Dessert')
         
         res = self.client.get(TAGS_URL)
         
